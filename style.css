@@ -1,0 +1,17 @@
+.logo-image {
+    background-image: url('/assets/img/auto-spares-image.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    /* full-screen height */
+    width: 100%;
+    /* full width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a:hover {
+    background-color: lightseagreen;
+    border-radius: 25px;
+}
