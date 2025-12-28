@@ -76,9 +76,11 @@
   
   <h2 class="text-center py-1 px-2 my-2 mx-3">PayPal Sandbox Payment Test</h2>
   <div class="container">
-    <div class="row">
+    <div class="row justify-content-center mt-5">
       <div class="col">
         <div class="card">
+          <!-- PayPal button container -->
+<div id="paypal-button-container" class="mt-5 d-flex justify-content-center"></div>
           <div class="card-body">
             <h1 class="text-center display-2 py-1 px-3 my-2 mx-3">Sandbox Website payment</h1>
             <img src="assets/img/crankshaft-01.jpg" class="img-fluid" alt="crankshaft image">
@@ -124,8 +126,7 @@
 <!-- PayPal SDK -->
 <script src="https://www.paypal.com/sdk/js?client-id=ASz5q_dtT08zuNwD-JxicBZn_CHy4f4kn31fxGcSidaQ8x5e1vwXWwP81TTfs5r25FDD0UTg-Wl5HHvz&currency=ZAR"></script>
 
-<!-- PayPal button container -->
-<div id="paypal-button-container"></div>
+
 
 <script>
   paypal.Buttons({
