@@ -52,7 +52,7 @@
   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="assets/img/engine-oil-filter.jpeg" class="d-block w-100 h-50" alt="Car bumper">
+      <img src="assets/img/lady-spare-parts.jpg" class="d-block w-100 h-50" alt="Car bumper">
     </div>
     <div class="carousel-item">
       <img src="assets/img/ceramic-brake-disc.jpg" class="d-block git w-100 h-50" alt="grill picture">
@@ -121,7 +121,28 @@
       </div>
     </div>
   </div>
+<!-- PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=ASz5q_dtT08zuNwD-JxicBZn_CHy4f4kn31fxGcSidaQ8x5e1vwXWwP81TTfs5r25FDD0UTg-Wl5HHvz&currency=ZAR"></script>
 
+<!-- PayPal button container -->
+<div id="paypal-button-container"></div>
+
+<script>
+  paypal.Buttons({
+    createOrder: (data, actions) => {
+      return actions.order.create({
+        purchase_units: [{
+          amount: { value: '10.00' }
+        }]
+      });
+    },
+    onApprove: (data, actions) => {
+      return actions.order.capture().then(details => {
+        alert('Payment successful!');
+      });
+    }
+  }).render('#paypal-button-container');
+</script>
   
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
