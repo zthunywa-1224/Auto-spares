@@ -100,7 +100,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="about.html"> About </a>
@@ -167,30 +167,37 @@
     <ul id="cart-items"></ul>
     <p class="total">Total: R <span id="total">0</span></p>
 </div>
-
-<script>
-    let cartItems = [];
-    let total = 0;
-
-    function addToCart(name, price) {
-        cartItems.push({ name, price });
-        total += price;
-        updateCart();
-    }
-
-    function updateCart() {
-        const cartList = document.getElementById("cart-items");
-        cartList.innerHTML = "";
-
-        cartItems.forEach(item => {
-            const li = document.createElement("li");
-            li.textContent = item.name + " - R " + item.price;
-            cartList.appendChild(li);
-        });
-
-        document.getElementById("total").textContent = total;
-    }
+ <script>
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  let total = 0;
+  const cartList = document.getElementById("cart-items");
+  cartItems.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = `${item.name} - R ${item.price}`;
+    cartList.appendChild(li);
+    total += item.price;
+  });
+  document.getElementById("total").textContent = total;
 </script>
 
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=ZAR"></script>
+<script>
+  paypal.Buttons({
+    createOrder: (data, actions) => {
+      return actions.order.create({
+        purchase_units: [{
+          amount: { value: total.toFixed(2) }
+        }]
+      });
+    },
+    onApprove: (data, actions) => {
+      return actions.order.capture().then(details => {
+        alert('Payment successful!');
+      });
+    }
+  }).render('#paypal-button-container');
+</script>
+
+.<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
